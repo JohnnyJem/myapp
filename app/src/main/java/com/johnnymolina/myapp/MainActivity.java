@@ -16,15 +16,16 @@ import icepick.Icepick;
 public class MainActivity extends ActionBarActivity {
 
     //Views
-    @Bind(R.id.title1) Button title1;
-    @Bind(R.id.title2) Button title2;
-    @Bind(R.id.title3) Button title3;
-    @Bind(R.id.title4) Button title4;
-    @Bind(R.id.title5) Button title5;
+    @Bind(R.id.button_title_1) Button title1;
+    @Bind(R.id.button_title_2) Button title2;
+    @Bind(R.id.button_title_3) Button title3;
+    @Bind(R.id.button_title_4) Button title4;
+    @Bind(R.id.button_title_5) Button title5;
+    @Bind(R.id.button_title_6) Button title6;
 
     private Button last;
     private Button button;
-
+    private Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     //Buttons animation change and Toast OnClick.
-    @OnClick({R.id.title1,R.id.title2,R.id.title3,R.id.title4,R.id.title5})
+    @OnClick({R.id.button_title_1,R.id.button_title_2,R.id.button_title_3,R.id.button_title_4,R.id.button_title_5,R.id.button_title_6})
     public void buttonClick(View view){
         button = (Button) view;
 
@@ -75,8 +76,10 @@ public class MainActivity extends ActionBarActivity {
         last=button;
 
         String title = button.getText().toString();
-        Toast.makeText(this, "This button will launch my " + title + " App.", Toast.LENGTH_SHORT).show();
+
+        if (mToast!=null){
+            mToast.cancel();
+        }
+        mToast.makeText(this, "This button will launch my " + title + " App.", Toast.LENGTH_SHORT).show();
     }
-
-
 }
