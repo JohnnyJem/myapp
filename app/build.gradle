@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
+// Options for annotation processor
+
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "com.johnnymolina.myapp"
+        minSdkVersion 16
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+def annotatedAdapter = '1.0.0'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //automatically added dependencies when project was created
+    //Android backward dependencies
+    compile 'com.android.support:recyclerview-v7:22.1.1'
+    compile 'com.android.support:appcompat-v7:' + rootProject.ext.appcompat7Version
+
+    //Networking
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+
+    compile 'com.squareup.okhttp:okhttp:2.3.0'
+    //Rx
+
+    //Annotation
+
+
+    //UI
+    compile 'com.github.bumptech.glide:glide:3.6.0'
+
+
+    //Other dependencies
+
+    //DI
+    compile 'com.jakewharton:butterknife:' +  rootProject.ext.butterknifeVersion
+    compile 'com.google.dagger:dagger:' + rootProject.ext.dagger2Version
+    apt 'com.google.dagger:dagger-compiler:' + rootProject.ext.dagger2Version //uses the plugin com.neenbedankt.android-apt
+    compile 'javax.annotation:javax.annotation-api:1.2'
+
+    //Mosby
+    //apt 'com.hannesdorfmann.annotatedadapter:processor:' + annotatedAdapter
+    //compile 'com.hannesdorfmann.annotatedadapter:annotation:' + annotatedAdapter
+    //compile 'com.hannesdorfmann.annotatedadapter:support-recyclerview:' + annotatedAdapter
+    compile 'frankiesardo:icepick:' + rootProject.ext.icepickVersion
+    provided 'frankiesardo:icepick-processor:' + rootProject.ext.icepickVersion
+    apt 'frankiesardo:icepick-processor:' + rootProject.ext.icepickVersion
+    apt 'com.hannesdorfmann.fragmentargs:processor:' + fragmentargsVersion
+
+    // testing
+
+}
